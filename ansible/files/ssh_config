@@ -1,0 +1,4 @@
+Host *
+  User root
+  IdentityFile ~/.ssh/ssh_key
+  ForwardAgent true

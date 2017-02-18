@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  ansible_service:
+    build: ./ansible
+    networks:
+      - ansible_docker
+    volumes:
+      - ./ansible/playbook:/playbook
+    command: /bin/bash
+    links:
+      - web
+    tty: true
+    depends_on:
+      - web
+
+  web:
+    build: ./web
+    networks:
+      - ansible_docker
+    ports:
+      - 80:80
+    expose:
+      - '22'
+    tty: true
+
+networks:
+  ansible_docker:
+    driver: bridge
+
